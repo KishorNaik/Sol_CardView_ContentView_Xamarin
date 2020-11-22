@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Sol_Demo.ViewModels"
+             x:Class="Sol_Demo.Components.CardViewComponent"
+             x:Name="this">
+
+    <Frame
+                   BindingContext="{x:Reference this}"
+                   BackgroundColor="{Binding CardColor}"
+                   BorderColor="{Binding BorderColor}"
+                   CornerRadius="5"
+                   HasShadow="True"
+                   Padding="8"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75" />
+                <RowDefinition Height="4" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Label Text="{Binding CardName}"
+                           FontAttributes="Bold"
+                           FontSize="Large"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Start" />
+
+            <BoxView Grid.Row="1"
+                             BackgroundColor="{Binding BorderColor}"
+                             HeightRequest="2"
+                             HorizontalOptions="Fill" />
+
+            <Label Grid.Row="2"
+                           Text="{Binding CardDescription}"
+                           VerticalTextAlignment="Start"
+                           VerticalOptions="Fill"
+                           HorizontalOptions="Fill" />
+
+            <Button Text="Delete"
+                            Command="{Binding CardDeleteCommand}"
+                            CommandParameter="{Binding CardName}"
+                            HorizontalOptions="End" />
+
+            <!--Get Main Page Object Title-->
+            <!--<Button Text="Delete"
+                            Command="{Binding CardDeleteCommand}"
+                            CommandParameter="{Binding Path=Title, Source={x:RelativeSource Mode=FindAncestor, AncestorType={x:Type ContentPage}, AncestorLevel=0}}"
+                            HorizontalOptions="End" />
+            -->
+            <!--Get Main Page Object-->
+            <!--
+            <Button Text="Delete"
+                            Command="{Binding CardDeleteCommand}"
+                            CommandParameter="{Binding Source={x:RelativeSource Mode=FindAncestor, AncestorType={x:Type ContentPage}, AncestorLevel=0}}"
+                            HorizontalOptions="End" />-->
+        </Grid>
+    </Frame>
+</ContentView>

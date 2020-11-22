@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Sol_Demo.ViewModels"
+             xmlns:component="clr-namespace:Sol_Demo.Components"
+             Title="Main Page"
+             x:Class="Sol_Demo.Views.MainPage">
+
+    <ContentPage.BindingContext>
+        <vm:PersonViewModel></vm:PersonViewModel>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <DataTemplate x:Key="PersonTemplate">
+            <component:CardViewComponent
+                BorderColor="DarkGray"
+                CardColor="Orange"
+                CardName="{Binding Name, Mode=TwoWay}"
+                CardDescription="{Binding Description, Mode=TwoWay}"
+                CardDeleteCommand="{Binding Source={x:RelativeSource Mode=FindAncestorBindingContext, AncestorType={x:Type vm:PersonViewModel}}, Path=DeleteCommand}">
+            </component:CardViewComponent>
+        </DataTemplate>
+    </ContentPage.Resources>
+
+    <StackLayout>
+        <CollectionView
+            ItemsSource="{Binding PersonList, Mode=TwoWay}"
+            ItemTemplate="{Binding Source={x:StaticResource Key=PersonTemplate}}">
+        </CollectionView>
+    </StackLayout>
+</ContentPage>
